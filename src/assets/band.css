@@ -1,0 +1,43 @@
+.feed .like-btn .reaction-box {
+  position: absolute;
+  width: 312px;
+  height: 55px;
+  background: #F0C674;
+  border-radius: 28px;
+  left: -25px;
+  bottom: 35px;
+  display: none;
+  z-index: 2;
+}
+.feed .like-btn .reaction-box .reaction-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background: #8959A8;
+  border-radius: 20px;
+  margin: 8px -1px 0 8px;
+  text-align: center;
+}
+.feed .like-btn .reaction-box .reaction-icon label {
+  padding: 3px 5px 3px 5px;
+  position: relative;
+  top: -24px;
+  border-radius: 10px;
+  font-size: 11px;
+  color: #FFF;
+  background: #333;
+  visibility: hidden;
+}
+.feed .like-btn:hover {
+  background: #718C00;
+}
+.feed .like-btn:hover .reaction-box {
+  display: block;
+}
+.feed .like-btn:hover .reaction-box .reaction-icon:hover {
+  transform: scale(1.4);
+  transform-origin: bottom;
+}
+.feed .like-btn:hover .reaction-box .reaction-icon:hover label {
+  visibility: visible;
+}

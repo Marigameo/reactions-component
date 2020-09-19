@@ -1,0 +1,19 @@
+.panel {
+    width: 200px;
+    height: auto;
+    z-index: 1;
+    background-color: lightgray;
+    color: #111111;
+    top: 90%;
+    left: 20px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.title {
+    font-weight: 800;
+}
+
+.usersList {
+    list-style-type: none;
+}

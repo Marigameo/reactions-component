@@ -1,0 +1,19 @@
+.feed .like-btn {
+  width: 80px;
+  height: 25px;
+  background: #D0D0D0;
+  position: absolute;
+  bottom: 13px;
+  left: 13px;
+  cursor: pointer;
+}
+.feed .like-btn::before {
+  content: ".";
+  opacity: 0;
+  display: block;
+  width: 44px;
+  height: 10px;
+  position: absolute;
+  top: -10px;
+  left: 0;
+}
