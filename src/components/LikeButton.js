@@ -15,8 +15,8 @@ class LikeButton extends Component {
         }
         this.changeButton = this.changeButton.bind(this);
     }
-    changeButton(name, emoji, emoji_id) {
 
+    changeButton(name, emoji, emoji_id) {
         this.setState({
             buttonName: name,
             emoji: emoji,
@@ -35,7 +35,8 @@ class LikeButton extends Component {
         const { buttonName, emoji } = this.state;
         return (
             <div>
-                <span className="like-btn" onMouseOver={this.mouseOver} onMouseLeave={this.mouseLeave}>
+                <span className="like-btn" onMouseOver={this.mouseOver} onMouseLeave={this.mouseLeave}
+                >
                     <span>{emoji}</span><span>{buttonName}</span>
                     <ReactionBand changeButton={this.changeButton} />
                 </span>

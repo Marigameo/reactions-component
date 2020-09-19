@@ -12,8 +12,8 @@ class TabComponent extends Component {
     }
 
     render() {
-        const { likes, haha, wow, sad, angry, allreactions } = this.props;
-        let usersLiked = likes.map(user => <li key={user.id + Math.random()}>{user.first_name} {user.last_name}</li>)
+        const { like, haha, wow, sad, angry, allreactions } = this.props;
+        let usersLiked = like.map(user => <li key={user.id + Math.random()}>{user.first_name} {user.last_name}</li>)
         let usersReactedHaha = haha.map(user => <li key={user.id + Math.random()}>{user.first_name} {user.last_name}</li>)
         let usersReactedWow = wow.map(user => <li key={user.id + Math.random()}>{user.first_name} {user.last_name}</li>)
         let usersReactedSad = sad.map(user => <li key={user.id + Math.random()}>{user.first_name} {user.last_name}</li>)

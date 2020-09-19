@@ -2,7 +2,7 @@ import React from 'react'
 import TabComponent from './TabComponent'
 import { Modal } from 'react-bootstrap';
 function SummaryModal(props) {
-    const { likes, haha, wow, sad, angry, allreactions } = props;
+    const { like, haha, wow, sad, angry, allreactions } = props;
     return (
         <Modal
             {...props}
@@ -17,7 +17,7 @@ function SummaryModal(props) {
             </Modal.Header>
             <Modal.Body>
                 <TabComponent
-                    likes={likes}
+                    like={like}
                     haha={haha}
                     wow={wow}
                     sad={sad}
