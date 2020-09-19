@@ -1,6 +1,7 @@
 import React from 'react'
 import TabComponent from './TabComponent'
 import { Modal } from 'react-bootstrap';
+import '../assets/modal.css'
 function SummaryModal(props) {
     const { like, haha, wow, sad, angry, allreactions } = props;
     return (
