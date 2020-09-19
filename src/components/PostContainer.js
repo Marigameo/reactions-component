@@ -243,6 +243,7 @@ class PostContainer extends Component {
         if (source === "button" && !likeButtonActive) {
             console.log("entering into button and not active");
             this.setReaction(reaction_id);
+            document.querySelector('.reaction-box').style.display = 'none'
         }
         else if (source === "button" && likeButtonActive) {
             console.log('remove that id')
@@ -273,6 +274,7 @@ class PostContainer extends Component {
             }
             newState[emoji] = newData
             this.setState(newState)
+            document.querySelector('.reaction-box').style.display = 'none'
             // })
         }
         else if (source === "emoji" && !likeButtonActive) {

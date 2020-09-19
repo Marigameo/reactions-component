@@ -2,18 +2,24 @@
     width: 200px;
     height: auto;
     z-index: 1;
-    background-color: lightgray;
+    background-color: #dfe4ea;
     color: #111111;
-    top: 90%;
-    left: 20px;
+    top: 88%;
+    left: -18px;
     border-radius: 10px;
     position: absolute;
+    padding: 10px;
 }
-
-.title {
+.panelTitle, .usersList {
+    font-size: 12px;
+}
+.panelTitle {
     font-weight: 800;
 }
 
 .usersList {
+    font-weight: 500;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }

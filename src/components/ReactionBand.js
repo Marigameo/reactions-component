@@ -30,7 +30,9 @@ class ReactionBand extends Component {
         })
         return (
             <div className="reaction-box">
-                {emoji}
+                <div className="reactions-wrapper">
+                    {emoji}
+                </div>
             </div>
         )
     }

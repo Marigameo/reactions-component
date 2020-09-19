@@ -1,35 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 .feed .like-btn .reaction-box {
   position: absolute;
-  width: 312px;
-  height: 55px;
-  background: #F0C674;
-  border-radius: 28px;
+  width: 200px;
+  height: 32px;
+  background: lightgoldenrodyellow;
+  border-radius: 24px;
   left: -25px;
-  bottom: 35px;
+  bottom: 37px;
   display: none;
   z-index: 2;
 }
+.reactions-wrapper {
+  padding: 0px 20px;
+  height: 32px;
+}
 .feed .like-btn .reaction-box .reaction-icon {
-  width: 40px;
-  height: 40px;
+  width: 16px;
+  height: 32px;
   display: inline-block;
-  background: #8959A8;
   border-radius: 20px;
-  margin: 8px -1px 0 8px;
+  margin-right: 16px;
   text-align: center;
+  font-size: 22px;
 }
 .feed .like-btn .reaction-box .reaction-icon label {
-  padding: 3px 5px 3px 5px;
+  padding: 4px 8px;
+  box-sizing: border-box;
   position: relative;
-  top: -24px;
+  bottom: 63px;
+  height: 24px;
   border-radius: 10px;
-  font-size: 11px;
   color: #FFF;
-  background: #333;
+  background: #161616;
   visibility: hidden;
+  font-size: 12px;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 .feed .like-btn:hover {
-  background: #718C00;
+  background: lightgray;
 }
 .feed .like-btn:hover .reaction-box {
   display: block;

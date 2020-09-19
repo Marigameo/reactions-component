@@ -1,0 +1,27 @@
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-bottom: 2px solid black !important;
+}
+.nav-tabs .nav-link {
+    border: none !important;
+    outline: none !important;
+}
+.avatar {
+    border-radius: 100px;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.tab-content {
+    height: 200px !important;
+    overflow: scroll !important;
+}
+.name-container {
+    height: 40px;
+    padding: 10px;
+}
+.userList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

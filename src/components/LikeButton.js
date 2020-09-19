@@ -26,7 +26,7 @@ class LikeButton extends Component {
                 <span className="like-btn" onMouseOver={this.mouseOver} onMouseLeave={this.mouseLeave}
                     onClick={(e) => updateContentReactions(e, emoji_id, 'button')}
                 >
-                    <span>{emoji}</span><span>{buttonName}</span>
+                    <span className="emoji">{emoji}</span><span className="emoji-name">{buttonName}</span>
                     <ReactionBand changeButton={changeButton} />
                 </span>
             </div>

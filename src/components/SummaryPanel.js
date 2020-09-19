@@ -5,9 +5,9 @@ export default function SummaryPanel(props) {
     const list = dataToShow.map(user => <li key={user.id}>{user.first_name} {user.last_name}</li>)
     return (
         <div className="panel">
-            <div className="title">{emojiKey}</div>
-            <div className="usersList">
-                <ul>
+            <div className="panelTitle">{emojiKey}</div>
+            <div>
+                <ul className="usersList">
                     {list}
                 </ul>
             </div>
