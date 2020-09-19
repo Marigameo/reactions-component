@@ -26,7 +26,7 @@ class ReactionBand extends Component {
     render() {
         const { emojis } = this.state;
         const emoji = emojis.map((emoji) => {
-            return <div className="reaction-icon" key={emoji.id} onClick={() => this.props.changeButton(emoji.name, emoji.emoji, emoji.id)}>{emoji.emoji} <label>{emoji.name}</label></div>
+            return <div className="reaction-icon" key={emoji.id} onClick={(e) => this.props.changeButton(e, emoji.name, emoji.emoji, emoji.id)}>{emoji.emoji} <label>{emoji.name}</label></div>
         })
         return (
             <div className="reaction-box">

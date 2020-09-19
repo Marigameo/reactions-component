@@ -9,21 +9,9 @@ class LikeButton extends Component {
         super(props)
 
         this.state = {
-            buttonName: 'Like',
-            emoji: '👍',
-            emoji_id: 1,
-        }
-        this.changeButton = this.changeButton.bind(this);
-    }
 
-    changeButton(name, emoji, emoji_id) {
-        this.setState({
-            buttonName: name,
-            emoji: emoji,
-            emoji_id: emoji_id,
-        })
-        this.props.updateContentReactions(emoji_id);
-        document.querySelector('.reaction-box').style.display = 'none'
+        }
+
     }
     mouseOver = () => {
         document.querySelector('.reaction-box').style.display = 'block'
@@ -32,13 +20,14 @@ class LikeButton extends Component {
         document.querySelector('.reaction-box').style.display = 'none'
     }
     render() {
-        const { buttonName, emoji } = this.state;
+        const { buttonName, emoji, emoji_id, changeButton, updateContentReactions } = this.props;
         return (
             <div>
                 <span className="like-btn" onMouseOver={this.mouseOver} onMouseLeave={this.mouseLeave}
+                    onClick={(e) => updateContentReactions(e, emoji_id, 'button')}
                 >
                     <span>{emoji}</span><span>{buttonName}</span>
-                    <ReactionBand changeButton={this.changeButton} />
+                    <ReactionBand changeButton={changeButton} />
                 </span>
             </div>
         )

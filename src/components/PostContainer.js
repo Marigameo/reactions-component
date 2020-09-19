@@ -26,7 +26,23 @@ class PostContainer extends Component {
             angry: [],
             allreactions: [],
             dataLoaded: false,
+            activeReaction: 1,
+            likeButtonActive: false,
+            buttonName: 'Like',
+            emoji: '👍',
+            emoji_id: 1,
         }
+        this.changeButton = this.changeButton.bind(this);
+    }
+    changeButton(e, name, emoji, emoji_id) {
+        let prevReactionId = this.state.emoji_id
+        this.setState({
+            buttonName: name,
+            emoji: emoji,
+            emoji_id: emoji_id,
+        })
+        this.updateContentReactions(e, emoji_id, "emoji", prevReactionId);
+        document.querySelector('.reaction-box').style.display = 'none'
     }
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
@@ -221,8 +237,77 @@ class PostContainer extends Component {
     }
     closePanel = () => this.setState({ summaryPanelOpen: false });
 
-    updateContentReactions = (reaction_id) => {
-        console.log(this.state.likeButtonActive);
+    updateContentReactions = (e, reaction_id, source, prevId = null) => {
+        e.stopPropagation();
+        const { likeButtonActive } = this.state
+        if (source === "button" && !likeButtonActive) {
+            console.log("entering into button and not active");
+            this.setReaction(reaction_id);
+        }
+        else if (source === "button" && likeButtonActive) {
+            console.log('remove that id')
+            //delete is not working here - since the data is not persisted and I'm adding a new user via post
+
+            // fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/user_content_reactions?user_id=4&content_id=1', {
+            //     method: 'DELETE',
+            // })
+            //     .then(res => res.text()) // or res.json()
+            //     .then(res => {
+            //         console.log(res)
+            let updateContentReactions = this.state.contentReactions.filter(item => item.user_id !== 4)
+            console.log(updateContentReactions)
+            let updatedAllReactions = this.state.allreactions.filter(item => item.id !== 4)
+            console.log(updatedAllReactions)
+            let emojiData = this.state.emojis.find(emoji => emoji.id === reaction_id);
+            let emoji = emojiData.name.toLowerCase();
+            let updatedReactionData = this.state[emoji];
+            let newData = updatedReactionData.filter(item => item.id !== 4)
+            console.log(newData)
+            let newState = {
+                likeButtonActive: false,
+                contentReactions: updateContentReactions,
+                allreactions: updatedAllReactions,
+                buttonName: 'Like',
+                emoji: '👍',
+                emoji_id: 1,
+            }
+            newState[emoji] = newData
+            this.setState(newState)
+            // })
+        }
+        else if (source === "emoji" && !likeButtonActive) {
+            console.log("entering into emoji and not active");
+            this.setReaction(reaction_id);
+        }
+        else {
+            console.log("remove the existing")
+            console.log("update new reaction")
+            let copyOfContentReactions = this.state.contentReactions
+            let index = copyOfContentReactions.findIndex((obj => obj.user_id === 4 && obj.content_id === 1))
+            copyOfContentReactions[index].reaction_id = reaction_id
+            console.log(copyOfContentReactions);
+            console.log(prevId)
+            let oldemojiData = this.state.emojis.find(emoji => emoji.id === prevId);
+            let oldemoji = oldemojiData.name.toLowerCase();
+            let oldupdatedReactionData = this.state[oldemoji];
+            let oldfilter = oldupdatedReactionData.filter(data => data.id !== 4)
+            console.log(oldfilter);
+            let emojiData = this.state.emojis.find(emoji => emoji.id === reaction_id);
+            let emoji = emojiData.name.toLowerCase();
+            let updatedReactionData = this.state[emoji];
+            let userData = this.state.users.find(user => user.id === 4);
+            updatedReactionData.push(userData)
+            let newState = {
+                contentReactions: copyOfContentReactions,
+                likeButtonActive: true,
+            }
+            newState[oldemoji] = oldfilter
+            newState[emoji] = updatedReactionData
+            this.setState(newState)
+        }
+    }
+    setReaction = (reaction_id) => {
+        console.log(reaction_id);
         let newData = {
             id: 31,
             user_id: 4,
@@ -253,16 +338,18 @@ class PostContainer extends Component {
                 let newState = {
                     contentReactions: updatedData,
                     allreactions: updatedUserData,
+                    likeButtonActive: true,
                 }
                 newState[emoji] = updatedReactionData
                 this.setState(newState)
+                console.log(this.state.likeButtonActive)
             });
     }
     componentDidMount() {
         this.init();
     }
     render() {
-        const { isOpen, dataLoaded, like, haha, wow, sad, angry, allreactions, matchingEmojis, summaryPanelOpen, dataToShow, emojiKey } = this.state;
+        const { isOpen, dataLoaded, like, haha, wow, sad, angry, allreactions, matchingEmojis, summaryPanelOpen, dataToShow, emojiKey, buttonName, emoji, emoji_id } = this.state;
         return (
             <div className="container">
                 <div className="feed">
@@ -284,7 +371,12 @@ class PostContainer extends Component {
                         dataToShow={dataToShow}
                         emojiKey={emojiKey}
                     />
-                    <LikeButton updateContentReactions={this.updateContentReactions}
+                    <LikeButton
+                        updateContentReactions={this.updateContentReactions}
+                        buttonName={buttonName}
+                        emoji={emoji}
+                        emoji_id={emoji_id}
+                        changeButton={this.changeButton}
                     />
                 </div>
             </div>
