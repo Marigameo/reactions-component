@@ -16,7 +16,7 @@
 }
 .feed .like-btn .reaction-box .reaction-icon {
   width: 16px;
-  height: 32px;
+  height: 15px;
   display: inline-block;
   border-radius: 20px;
   margin-right: 16px;
@@ -42,9 +42,8 @@
 .feed .like-btn:hover .reaction-box {
   display: block;
 }
-.feed .like-btn:hover .reaction-box .reaction-icon:hover {
-  transform: scale(1.4);
-  transform-origin: bottom;
+.feed .like-btn .reaction-box .reaction-icon:hover {
+  transform: scale(1.4, 1.4) translate(0, -6px);
 }
 .feed .like-btn:hover .reaction-box .reaction-icon:hover label {
   visibility: visible;
