@@ -10,6 +10,7 @@ class ReactionBand extends Component {
             emojis: [],
         }
     }
+
     componentDidMount() {
         fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/reactions')
             .then(res => res.json())
@@ -23,6 +24,7 @@ class ReactionBand extends Component {
                 console.log(error);
             })
     }
+
     render() {
         const { emojis } = this.state;
         const emoji = emojis.map((emoji) => {

@@ -13,12 +13,17 @@ class TabComponent extends Component {
 
     render() {
         const { like, haha, wow, sad, angry, allreactions } = this.props;
+
+        //there is a duplicate entity returned from the api - same user reacted for a content twice
+        //thus to prevent key warning I've added a random number in addition to the id in key
+
         let usersLiked = like.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
         let usersReactedHaha = haha.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
         let usersReactedWow = wow.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
         let usersReactedSad = sad.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
         let usersReactedAngry = angry.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
         let usersReactedOverall = allreactions.map(user => <li key={user.id + Math.random()}><div className="name-container"><img className="avatar" src={user.avatar} alt={user.first_name}></img>{user.first_name} {user.last_name}</div></li>)
+
         return (
             <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
                 <Tab eventKey="all" title={'All ' + usersReactedOverall.length}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import '../assets/summary.css'
 
 import SummaryModal from './SummaryModal'
@@ -36,7 +37,7 @@ class Summary extends Component {
                 </div>
             )
         } else {
-            return <h1>Loading...</h1>
+            return <div>Loading...</div>
         }
     }
 }

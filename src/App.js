@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-//importing components
+//importing wrapper component
 import PostContainer from './components/PostContainer';
 
 function App() {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-//import style
+//import styles
 import '../assets/post.css'
+
 import LikeButton from './LikeButton'
 import Summary from './Summary';
 
@@ -34,6 +35,7 @@ class PostContainer extends Component {
         }
         this.changeButton = this.changeButton.bind(this);
     }
+
     changeButton(e, name, emoji, emoji_id) {
         let prevReactionId = this.state.emoji_id
         this.setState({
@@ -44,8 +46,12 @@ class PostContainer extends Component {
         this.updateContentReactions(e, emoji_id, "emoji", prevReactionId);
         document.querySelector('.reaction-box').style.display = 'none'
     }
+
     openModal = () => this.setState({ isOpen: true });
+
     closeModal = () => this.setState({ isOpen: false });
+
+    //unique list of reactions so far
     getReactionIds = (data) => {
         return new Promise((resolve) => {
             let reactions = data.map(item => item.reaction_id)
@@ -56,6 +62,8 @@ class PostContainer extends Component {
             resolve(uniqueReactions)
         })
     }
+
+    //get all users data
     getUserData = () => {
         return new Promise((resolve, reject) => {
             fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/users')
@@ -71,6 +79,8 @@ class PostContainer extends Component {
                 })
         })
     }
+
+    //fetching data from content reactions api 
     getContentReactions = () => {
         return new Promise((resolve, reject) => {
             fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/user_content_reactions')
@@ -86,6 +96,8 @@ class PostContainer extends Component {
                 })
         })
     }
+
+    //matching and filtering reacted user data
     getAllReactedUsersData = () => {
         let ReactionData = this.state.contentReactions.filter(item => item.content_id === 1)
         console.log(ReactionData)
@@ -96,6 +108,8 @@ class PostContainer extends Component {
         console.log(usersReacted)
         return usersReacted;
     }
+
+    //fetch emoji api response
     getEmojiData = () => {
         return new Promise((resolve, reject) => {
             fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/reactions')
@@ -111,6 +125,8 @@ class PostContainer extends Component {
                 })
         })
     }
+
+    //getting list of matching emojis using emoji id's 
     emojisForUniqueReactions = (emojis) => {
         let emojisMatched = [];
         this.state.uniqueReactions.forEach(reaction => {
@@ -122,6 +138,8 @@ class PostContainer extends Component {
         })
         return true;
     }
+
+    //find user based on user id passed
     matchUserData = (id) => {
         let ReactionData = this.state.contentReactions.filter(item => item.reaction_id === id && item.content_id === 1)
         console.log(ReactionData)
@@ -132,6 +150,8 @@ class PostContainer extends Component {
         console.log(usersReacted)
         return usersReacted;
     }
+
+    //categorize users based on reactions 
     filterUsers = (ids) => {
         if (ids.length > 0) {
             this.setState({
@@ -171,6 +191,8 @@ class PostContainer extends Component {
         });
         console.log(this.state);
     }
+
+    //initializer function
     init = () => {
         this.getUserData().then((users) => {
             console.log(users)
@@ -202,6 +224,7 @@ class PostContainer extends Component {
                 }
             })
     }
+
     openPanel = (key) => {
         switch (key) {
             case 1: this.setState({
@@ -235,8 +258,10 @@ class PostContainer extends Component {
             this.setState({ summaryPanelOpen: true });
         }
     }
+
     closePanel = () => this.setState({ summaryPanelOpen: false });
 
+    //function to update reactions based on interactions with emojis
     updateContentReactions = (e, reaction_id, source, prevId = null) => {
         e.stopPropagation();
         const { likeButtonActive } = this.state
@@ -247,6 +272,7 @@ class PostContainer extends Component {
         }
         else if (source === "button" && likeButtonActive) {
             console.log('remove that id')
+
             //delete is not working here - since the data is not persisted and I'm adding a new user via post
 
             // fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/user_content_reactions?user_id=4&content_id=1', {
@@ -255,6 +281,7 @@ class PostContainer extends Component {
             //     .then(res => res.text()) // or res.json()
             //     .then(res => {
             //         console.log(res)
+
             let updateContentReactions = this.state.contentReactions.filter(item => item.user_id !== 4)
             console.log(updateContentReactions)
             let updatedAllReactions = this.state.allreactions.filter(item => item.id !== 4)
@@ -308,6 +335,8 @@ class PostContainer extends Component {
             this.setState(newState)
         }
     }
+
+    //remove the existing reaction and update with new one
     setReaction = (reaction_id) => {
         console.log(reaction_id);
         let newData = {
@@ -347,9 +376,11 @@ class PostContainer extends Component {
                 console.log(this.state.likeButtonActive)
             });
     }
+
     componentDidMount() {
         this.init();
     }
+
     render() {
         const { isOpen, dataLoaded, like, haha, wow, sad, angry, allreactions, matchingEmojis, summaryPanelOpen, dataToShow, emojiKey, buttonName, emoji, emoji_id } = this.state;
         return (
