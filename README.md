@@ -22,11 +22,11 @@ You can find the working demo on [here](https://reactions-component.netlify.app/
 
 ## Steps to clone and run the application
 
-### git clone https://github.com/Marigameo/reactions-component.git
+* git clone https://github.com/Marigameo/reactions-component.git
 
-### npm i 
+* npm i 
 
-### npm start
+* npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
