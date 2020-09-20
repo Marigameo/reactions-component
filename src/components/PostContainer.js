@@ -272,7 +272,7 @@ class PostContainer extends Component {
         }
         else if (source === "button" && likeButtonActive) {
             console.log('remove that id')
-
+            document.querySelector('.like-btn').style.backgroundColor = '#ffffff'
             //delete is not working here - since the data is not persisted and I'm adding a new user via post
 
             // fetch('https://my-json-server.typicode.com/artfuldev/json-db-data/user_content_reactions?user_id=4&content_id=1', {
@@ -311,6 +311,7 @@ class PostContainer extends Component {
         else {
             console.log("remove the existing")
             console.log("update new reaction")
+            document.querySelector('.like-btn').style.backgroundColor = '#dff9fb'
             let copyOfContentReactions = this.state.contentReactions
             let index = copyOfContentReactions.findIndex((obj => obj.user_id === 4 && obj.content_id === 1))
             copyOfContentReactions[index].reaction_id = reaction_id
@@ -355,6 +356,7 @@ class PostContainer extends Component {
             .then(data => {
                 console.log(data)
                 console.log("enters")
+                document.querySelector('.like-btn').style.backgroundColor = '#dff9fb'
                 let userData = this.state.users.find(user => user.id === newData.user_id);
                 let updatedUserData = this.state.allreactions;
                 updatedUserData.push(userData)
