@@ -7,10 +7,11 @@
   cursor: pointer;
 }
 .emoji {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .emoji-name,.emoji {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 500;
 }
 .feed .like-btn::before {
   content: ".";
