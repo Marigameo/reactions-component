@@ -2,13 +2,19 @@
     font-weight: 500;
     font-size: 16px; 
 }
-.summaryReactions {
+.summaryReactions, .loading {
   display: flex;
   position: absolute;
   bottom: 56px;
   left: 18px;
   z-index: 1;
+}
+.summaryReactions {
   font-size: 18px;
+}
+.loading {
+  font-size: 12px;
+  font-weight: 500;
 }
 .link-button {
   background-color: transparent;

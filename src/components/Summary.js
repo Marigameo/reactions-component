@@ -37,7 +37,7 @@ class Summary extends Component {
                 </div>
             )
         } else {
-            return <div>Loading...</div>
+            return <div className="summaryReactions loading">Loading...</div>
         }
     }
 }
